@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 @TableName("product")
 public class Product {
-    @TableId(type = IdType.INPUT)
+    @TableId(value = "productid", type = IdType.INPUT)
     private String productId;
     @TableField(value = "category")
     private String categoryId;
