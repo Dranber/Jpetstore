@@ -2,8 +2,10 @@ package org.csu.mypetstore.api.controller.front;
 
 import org.csu.mypetstore.api.common.CommonResponse;
 import org.csu.mypetstore.api.entity.Category;
+import org.csu.mypetstore.api.entity.Item;
 import org.csu.mypetstore.api.entity.Product;
 import org.csu.mypetstore.api.service.CatalogService;
+import org.csu.mypetstore.api.vo.ItemVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +42,14 @@ public class CatalogController {
     }
 
     @GetMapping("products/{id}")
+    @ResponseBody
     public CommonResponse<Product> getProductById(@PathVariable("id") String productId) {
         return catalogService.getProductById(productId);
+    }
+
+    @GetMapping("products/{id}/items")
+    @ResponseBody
+    public CommonResponse<List<ItemVO>> getItemsByProductId(@PathVariable("id") String productId) {
+        return catalogService.getItemsByProductId(productId);
     }
 }
